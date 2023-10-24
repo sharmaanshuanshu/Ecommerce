@@ -13,8 +13,12 @@ app.use(express.static("public"));
 // connect to the mongodb database
 connectDB()
 
-app.use('/api/items', require("./routes/items"))
-app.use('/api/payment', cors(), require("./routes/payment"))
+const itemRoutes = require('./routes/items')
+const PaymentRoutes = require('./routes/payment')
+
+
+app.use('/api/items', itemRoutes)
+app.use('/api/payment', cors(), PaymentRoutes);
 
 
 app.listen(PORT, console.log("Server is running on port ", PORT))
